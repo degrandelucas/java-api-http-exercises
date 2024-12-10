@@ -12,7 +12,7 @@ public class App {
 
         //API do Google Books
         Scanner read = new Scanner(System.in);
-        /*System.out.println("Digite o novo do livro: ");
+        System.out.println("Digite o novo do livro: ");
         String readBook = read.nextLine();
         String urlBook = "https://www.googleapis.com/books/v1/volumes?q="+ URLEncoder.encode(readBook, StandardCharsets.UTF_8);
 
@@ -21,12 +21,12 @@ public class App {
                 .uri(URI.create(urlBook))
                 .build();
         HttpResponse responseBook = clientBook.send(requestBook, HttpResponse.BodyHandlers.ofString());
-        System.out.println(responseBook.body()); */
+        System.out.println(responseBook.body());
 
+        //API do Coin Gecko
         System.out.println("Digite o nome da criptomoeda (exemplo: bitcoin, ethereum): ");
         String readCoin = read.nextLine();
         String urlCoin = "https://api.coingecko.com/api/v3/simple/price?ids=" + URLEncoder.encode(readCoin, StandardCharsets.UTF_8) + "&vs_currencies=usd";
-
 
         HttpClient clientCoin = HttpClient.newHttpClient();
         HttpRequest requestCoin = HttpRequest.newBuilder()
@@ -34,6 +34,18 @@ public class App {
                 .build();
         HttpResponse responseCoin = clientCoin.send(requestCoin, HttpResponse.BodyHandlers.ofString());
         System.out.println(responseCoin.body());
+        System.out.println("");
 
+        //API do TheMealDB
+        System.out.println("Digite o nome de um prato (exemplo: Strawberries Romanoff, Lamb Pilaf (Plov): ");
+        String readMeal = read.nextLine();
+        String urlMeal = "https://themealdb.com/api/json/v1/1/search.php?s=" + URLEncoder.encode(readMeal, StandardCharsets.UTF_8);
+
+        HttpClient clientMeal = HttpClient.newHttpClient();
+        HttpRequest requestMeal = HttpRequest.newBuilder()
+                .uri(URI.create(urlMeal))
+                .build();
+        HttpResponse responseMeal = clientMeal.send(requestMeal, HttpResponse.BodyHandlers.ofString());
+        System.out.println(responseMeal.body());
     }
 }
