@@ -2,9 +2,7 @@ package application;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dto.CoinSelect;
-import dto.JsonBook;
-import dto.Quotation;
+import dto.*;
 import models.Book;
 import models.Coin;
 import models.Meal;
@@ -72,7 +70,7 @@ public class App {
         HttpResponse responseMeal = clientMeal.send(requestMeal, HttpResponse.BodyHandlers.ofString());
 
         Gson gsonMeal = new GsonBuilder().serializeNulls().create();
-        Meal jsonMealResponse = gsonMeal.fromJson((String) responseMeal.body(), Meal.class);
+        Food jsonMealResponse = gsonMeal.fromJson((String) responseMeal.body(), Food.class);
 
         Meal meal = new Meal(jsonMealResponse);
         System.out.println(meal);
