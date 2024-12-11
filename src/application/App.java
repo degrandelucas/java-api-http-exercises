@@ -7,6 +7,7 @@ import dto.JsonBook;
 import dto.Quotation;
 import models.Book;
 import models.Coin;
+import models.Meal;
 
 import java.io.IOException;
 import java.net.URI;
@@ -40,7 +41,7 @@ public class App {
         System.out.println(repost); */
 
         //API do Coin Gecko
-        System.out.println("Digite o nome da criptomoeda (exemplo: bitcoin, ethereum): ");
+        /*System.out.println("Digite o nome da criptomoeda (exemplo: bitcoin, ethereum): ");
         String readCoin = read.nextLine();
         String urlCoin = "https://api.coingecko.com/api/v3/simple/price?ids=" + URLEncoder.encode(readCoin, StandardCharsets.UTF_8) + "&vs_currencies=usd";
 
@@ -57,10 +58,10 @@ public class App {
 
         System.out.println(coin);
 
-        System.out.println("");
+        System.out.println(""); */
 
         //API do TheMealDB
-        /*System.out.println("Digite o nome de um prato (exemplo: Strawberries Romanoff, Lamb Pilaf (Plov): ");
+        System.out.println("Digite o nome de um prato (exemplo: Strawberries Romanoff, Lamb Pilaf (Plov): ");
         String readMeal = read.nextLine();
         String urlMeal = "https://themealdb.com/api/json/v1/1/search.php?s=" + URLEncoder.encode(readMeal, StandardCharsets.UTF_8);
 
@@ -69,6 +70,13 @@ public class App {
                 .uri(URI.create(urlMeal))
                 .build();
         HttpResponse responseMeal = clientMeal.send(requestMeal, HttpResponse.BodyHandlers.ofString());
-        System.out.println(responseMeal.body()); */
+
+        Gson gsonMeal = new GsonBuilder().serializeNulls().create();
+        Meal jsonMealResponse = gsonMeal.fromJson((String) responseMeal.body(), Meal.class);
+
+        Meal meal = new Meal(jsonMealResponse);
+        System.out.println(meal);
+
+
     }
 }
