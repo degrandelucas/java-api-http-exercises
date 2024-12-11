@@ -2,11 +2,13 @@ package application;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dto.CoinSelect;
 import dto.JsonBook;
+import dto.Quotation;
 import models.Book;
+import models.Coin;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -20,7 +22,7 @@ public class App {
 
         //API do Google Books
         Scanner read = new Scanner(System.in);
-        System.out.println("Digite o novo do livro: ");
+        /*System.out.println("Digite o novo do livro: ");
         String readBook = read.nextLine();
         String urlBook = "https://www.googleapis.com/books/v1/volumes?q="+ URLEncoder.encode(readBook, StandardCharsets.UTF_8);
 
@@ -31,14 +33,14 @@ public class App {
         HttpResponse responseBook = clientBook.send(requestBook, HttpResponse.BodyHandlers.ofString());
 
         Gson gsonBook = new GsonBuilder().serializeNulls().create();
-        JsonBook resposta1 = gsonBook.fromJson((String) responseBook.body(), JsonBook.class);
+        JsonBook jsonResponse = gsonBook.fromJson((String) responseBook.body(), JsonBook.class);
+        System.out.println(jsonResponse);
 
-        Book repost = new Book(resposta1);
-
-        System.out.println(repost);
+        Book repost = new Book(jsonResponse);
+        System.out.println(repost); */
 
         //API do Coin Gecko
-        /*System.out.println("Digite o nome da criptomoeda (exemplo: bitcoin, ethereum): ");
+        System.out.println("Digite o nome da criptomoeda (exemplo: bitcoin, ethereum): ");
         String readCoin = read.nextLine();
         String urlCoin = "https://api.coingecko.com/api/v3/simple/price?ids=" + URLEncoder.encode(readCoin, StandardCharsets.UTF_8) + "&vs_currencies=usd";
 
@@ -47,11 +49,18 @@ public class App {
                 .uri(URI.create(urlCoin))
                 .build();
         HttpResponse responseCoin = clientCoin.send(requestCoin, HttpResponse.BodyHandlers.ofString());
-        System.out.println(responseCoin.body());
+
+        Gson gsonCoin = new Gson();
+        CoinSelect jsonCoinResponse = gsonCoin.fromJson((String) responseCoin.body(), CoinSelect.class);
+
+        Coin coin = new Coin(jsonCoinResponse, readCoin);  // Passa o nome da moeda para acessar o valor correto no Map
+
+        System.out.println(coin);
+
         System.out.println("");
 
         //API do TheMealDB
-        System.out.println("Digite o nome de um prato (exemplo: Strawberries Romanoff, Lamb Pilaf (Plov): ");
+        /*System.out.println("Digite o nome de um prato (exemplo: Strawberries Romanoff, Lamb Pilaf (Plov): ");
         String readMeal = read.nextLine();
         String urlMeal = "https://themealdb.com/api/json/v1/1/search.php?s=" + URLEncoder.encode(readMeal, StandardCharsets.UTF_8);
 

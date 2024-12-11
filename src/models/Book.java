@@ -1,28 +1,32 @@
 package models;
 
 import dto.JsonBook;
+import dto.VolumeInfo;
+
+import java.util.List;
 
 public class Book {
     private String nameBook;
-    private String author;
-    private int pageNumber;
-    private String categorie;
+    private List author;
+    private Integer pageNumber;
+    private List categorie;
 
-
-    public Book (JsonBook resposta1) {
-        this.nameBook = title;
-        this.author = authors;
-        this.pageNumber = Integer.parseInt(pageCount);
-        this.categorie = categories;
+    public Book(JsonBook jsonResponse) {
+        VolumeInfo volumeInfo = jsonResponse.items().getFirst().volumeInfo();
+        this.nameBook = volumeInfo.title();
+        this.author = volumeInfo.authors();
+        this.pageNumber = volumeInfo.pageCount();
+        this.categorie = volumeInfo.categories();
     }
+
 
     @Override
     public String toString() {
-        return "Book{" +
-                "author='" + author + '\'' +
-                ", nameBook='" + nameBook + '\'' +
-                ", pageNumber=" + pageNumber +
-                ", categorie='" + categorie + '\'' +
+        return "Livro{" +
+                "Autor='" + author + '\'' +
+                ", Título='" + nameBook + '\'' +
+                ", Paginas=" + pageNumber +
+                ", Categoria='" + categorie + '\'' +
                 '}';
     }
 

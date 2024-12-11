@@ -1,4 +1,6 @@
 package dto;
 
-public record JsonBook (String title, String authors, String pageCount, String categories) {
+import java.util.List;
+
+public record JsonBook (List<Items> items) {
 }
