@@ -21,7 +21,7 @@ public class App {
 
         //API do Google Books
         Scanner read = new Scanner(System.in);
-        /*System.out.println("Digite o novo do livro: ");
+        System.out.println("Digite o novo do livro: ");
         String readBook = read.nextLine();
         String urlBook = "https://www.googleapis.com/books/v1/volumes?q="+ URLEncoder.encode(readBook, StandardCharsets.UTF_8);
 
@@ -36,7 +36,7 @@ public class App {
         System.out.println(jsonResponse);
 
         Book repost = new Book(jsonResponse);
-        System.out.println(repost); */
+        System.out.println(repost);
 
         //API do Coin Gecko
         /*System.out.println("Digite o nome da criptomoeda (exemplo: bitcoin, ethereum): ");
@@ -54,9 +54,9 @@ public class App {
 
         Coin coin = new Coin(jsonCoinResponse, readCoin);  // Passa o nome da moeda para acessar o valor correto no Map
 
-        System.out.println(coin);
+        System.out.println(coin);*/
 
-        System.out.println(""); */
+        System.out.println("");
 
         //API do TheMealDB
         System.out.println("Digite o nome de um prato (exemplo: Strawberries Romanoff, Lamb Pilaf (Plov): ");
@@ -74,7 +74,6 @@ public class App {
 
         Meal meal = new Meal(jsonMealResponse);
         System.out.println(meal);
-
 
     }
 }

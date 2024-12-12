@@ -1,4 +1,6 @@
 package dto;
 
-public record Food(FoodInfo meals) {
+import java.util.List;
+
+public record Food(List<FoodInfo> meals) {
 }
